@@ -3,6 +3,7 @@ import { API_URL } from 'env';
 import { stringify } from 'query-string';
 import { store } from 'reducers';
 import { ProfileState, signOut } from 'reducers/profile';
+import { openNotification } from 'reducers/notification';
 import { camelizeKeys } from 'humps';
 
 const beforeRequest = (config: AxiosRequestConfig) => {
@@ -23,6 +24,9 @@ const onError = async (error: AxiosError) => {
     const { status } = response;
     if (status === 401) {
       store.dispatch(signOut());
+    } else {
+      const { message } = response.data as any;
+      store.dispatch(openNotification({ message, variant: 'error' }));
     }
   }
   return Promise.reject(error);
