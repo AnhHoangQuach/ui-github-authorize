@@ -11,6 +11,8 @@ const App = () => {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
+    const resultId = window.location.href.split('results/');
+    if (resultId[1]) localStorage.setItem('result_id', resultId[1]);
     try {
       const profile = JSON.parse(localStorage.getItem('profile') ?? '');
       store.dispatch(signIn(profile));

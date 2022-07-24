@@ -5,7 +5,10 @@ import { systemService } from 'services';
 import { useParams } from 'react-router-dom';
 
 const Home = () => {
-  const { resultId } = useParams() as { resultId: string };
+  const params = useParams();
+
+  const resultId = localStorage.getItem('result_id') ?? (params.resultId as string);
+  window.history.pushState('resultId', '', `/results/${resultId}`);
 
   const { data, isFetching } = useQuery(
     ['systemService.fetchRecords', resultId],

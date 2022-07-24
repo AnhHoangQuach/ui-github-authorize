@@ -19,7 +19,7 @@ export const profileSlice = createSlice({
       return profile;
     },
     signOut: () => {
-      localStorage.removeItem('profile');
+      localStorage.clear();
       return { isLoggedIn: false };
     },
   },
