@@ -1,6 +1,6 @@
 import { Logout, Menu as MenuIcon } from '@mui/icons-material';
 import { AppBar, Divider, Drawer, IconButton, Toolbar } from '@mui/material';
-import { AppBreadcrumb, AppMenu } from 'containers';
+import { AppBreadcrumb } from 'containers';
 import { useWindowSize } from 'hooks';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -25,7 +25,6 @@ const Header = () => {
           <span className='font-medium text-2xl text-primary-main'>Kyber Network</span>
         </div>
         <Divider className='my-2' />
-        <AppMenu />
       </Drawer>
 
       <AppBar position='sticky' color='inherit' elevation={1}>

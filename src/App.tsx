@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppContainer } from 'containers';
 import { store } from 'reducers';
 import { PrivateLayout } from 'layouts';
-import { default as jwtDecode } from 'jwt-decode';
 import { useEffect, useState } from 'react';
 import { signIn } from 'reducers/profile';
 import { staticRoute } from 'routes';
@@ -13,8 +12,7 @@ const App = () => {
 
   useEffect(() => {
     try {
-      const profile = JSON.parse(localStorage.getItem('profile')!);
-      jwtDecode(profile.accessToken);
+      const profile = JSON.parse(localStorage.getItem('profile') ?? '');
       store.dispatch(signIn(profile));
     } catch {
     } finally {

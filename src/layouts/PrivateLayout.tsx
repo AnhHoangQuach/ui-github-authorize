@@ -23,9 +23,11 @@ const PrivateLayout = () => {
         <AppHeader />
         <div className='sm:px-6 px-4 py-4 pt-10'>
           <Routes>
-            {Object.values(privateRoute).map(({ path, element }) => (
-              <Route key={path} path={path} element={element} />
-            ))}
+            {Object.values(privateRoute)
+              .filter(({ requiredLogin }: any) => !requiredLogin || isLoggedIn)
+              .map(({ path, element }) => (
+                <Route key={path} path={path} element={element} />
+              ))}
             <Route path='*' element={<Navigate to={privateRoute.home.path} />} />
           </Routes>
         </div>

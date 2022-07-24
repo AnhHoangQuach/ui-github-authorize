@@ -5,6 +5,7 @@ type RouteType = {
   url?: (query: any) => string;
   name?: string;
   element: JSX.Element;
+  requiredLogin?: boolean;
 };
 
 type PrivateRouteType = {
@@ -17,6 +18,7 @@ const privateRoute: PrivateRouteType = {
     name: 'Results',
     url: ({ resultId }: { resultId: string }) => `/results/${resultId}`,
     element: <Home />,
+    requiredLogin: true,
   },
 };
 
